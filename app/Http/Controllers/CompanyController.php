@@ -7,6 +7,7 @@ use App\Repositories\CompanyRepository;
 use App\Repositories\ElasticSearchRepository;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
+use App\Helpers\CompanyNameTransformer;
 
 class CompanyController extends Controller
 {
@@ -47,8 +48,16 @@ class CompanyController extends Controller
 
         $searchResults = $this->elasticSearchRepository->searchAll($keyword, $page, $limit);
 
+        // Преобразовываем имена компаний
+        if(isset($searchResults['data'])) {
+            foreach($searchResults['data'] as &$result) {
+                $result['name'] = CompanyNameTransformer::transform($result['name']);
+            }
+        }
+        
         return response()->json($searchResults, Response::HTTP_OK);
     }
+
 
     public function findCompanyByBin(Request $request, $biin)
     {

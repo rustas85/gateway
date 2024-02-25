@@ -41,6 +41,7 @@ class ElasticSearchRepository
                 unset($source['@timestamp']);
                 unset($source['@version']);
                 unset($source['document_type']);
+
                 return $source;
             }, $hits);
 
@@ -83,6 +84,7 @@ class ElasticSearchRepository
                 unset($source['@timestamp']);
                 unset($source['@version']);
                 unset($source['document_type']);
+
                 return $source;
             }, $hits);
 
@@ -125,6 +127,7 @@ class ElasticSearchRepository
                 unset($source['@timestamp']);
                 unset($source['@version']);
                 unset($source['document_type']);
+
                 return $source;
             }, $hits);
 

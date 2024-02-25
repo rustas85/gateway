@@ -36,3 +36,4 @@ $router->group(['middleware' => 'cors'], function () use ($router) {
         });
     });
 });
+
